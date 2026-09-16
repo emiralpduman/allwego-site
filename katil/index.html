@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<!-- Davet linkinin yedek sayfası (T130): uygulama yüklüyse link doğrudan uygulamayı açar,
+     değilse burası kodu gösterir. Başlık bilerek front matter'da yok: minima başlıklı
+     sayfaları üst menüye ekliyor. -->
+<h1>Seyahate katıl</h1>
+
+<p id="code-line" hidden>
+  Grup kodun:
+  <strong id="code" style="font-family: ui-monospace, Menlo, monospace; font-size: 2em; letter-spacing: 0.15em;"></strong>
+</p>
+
+<ol>
+  <li>AllWeGo'yu aç.</li>
+  <li>Menüden <em>Seyahate kodla katıl</em>'a dokun.</li>
+  <li>Grup kodunu yaz.</li>
+</ol>
+
+<p>Sorun olursa: emiralpduman@gmail.com</p>
+
+<script>
+  (function () {
+    // Kod alfabesi uygulamayla aynı (I, O, 0, 1 yok); ayraç ve boşluk atılır.
+    var raw = new URLSearchParams(window.location.search).get("kod") || "";
+    var code = raw.toUpperCase().replace(/[\s\-–—_.]/g, "");
+    if (/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)) {
+      document.getElementById("code").textContent = code;
+      document.getElementById("code-line").hidden = false;
+    }
+  })();
+</script>
