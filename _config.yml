@@ -1,3 +1,6 @@
 title: AllWeGo
 lang: tr
 theme: minima
+# Üst menü yalnız gizlilik; katılma sayfası başlıklı ama menüde yok (L-K7).
+header_pages:
+  - gizlilik.md
