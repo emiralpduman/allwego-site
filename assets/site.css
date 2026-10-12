@@ -1,0 +1,275 @@
+/* AllWeGo sitesi — uygulamanın tasarım dilinden (ios/AllWeGo/Core/DesignSystem):
+   mercan kapak + üstüne binen yuvarlak sayfa (CoverSheet), gruplu kartlar (GroupedCard),
+   mercan büyük harfli bölüm başlıkları (ContentSectionHeader). Renkler Assets.xcassets'ten. */
+
+:root {
+  --primary: #E4622F;          /* Primary */
+  --primary-text: #B8451C;     /* PrimaryText */
+  --brand-start: #F0724A;      /* launchGradient */
+  --brand-end: #D9552C;
+  --text: #16141F;             /* TextPrimary */
+  --text-secondary: #6B6878;   /* TextSecondary */
+  --page: #F7F7F8;             /* BgGroupedPage */
+  --surface: #FFFFFF;          /* BgSurface */
+  --hairline: rgba(22, 20, 31, 0.07); /* BorderHairline */
+  --tint-primary: rgba(228, 98, 47, 0.10); /* tintRowPlate */
+  --chip-on-brand: rgba(255, 255, 255, 0.20); /* chipOnImage */
+  --chip-on-brand-active: rgba(255, 255, 255, 0.32);
+  --shadow: 0 1px 2px rgba(22, 20, 31, 0.04), 0 4px 16px rgba(22, 20, 31, 0.05);
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-text: #E4622F;
+    --text: #FFFFFF;
+    --text-secondary: rgba(235, 235, 245, 0.65);
+    --page: #000000;
+    --surface: #1C1C1E;
+    --hairline: rgba(255, 255, 255, 0.12);
+    --tint-primary: rgba(228, 98, 47, 0.18);
+    --shadow: none;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font: 17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+a { color: var(--primary-text); text-underline-offset: 2px; }
+
+/* Kapak: uygulamanın açılış zemini */
+.cover {
+  background: linear-gradient(135deg, var(--brand-start), var(--brand-end));
+  color: #FFFFFF;
+  padding: 20px 16px 64px;
+}
+
+.cover-inner, .sheet-inner { max-width: 720px; margin: 0 auto; }
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+}
+
+.brand img { width: 44px; height: 44px; }
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--chip-on-brand);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.nav a[aria-current="page"] { background: var(--chip-on-brand-active); }
+
+.cover h1 {
+  margin: 28px 0 4px;
+  font-size: 34px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.cover .lede {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9); /* textOnImageSecondary */
+  font-size: 17px;
+}
+
+/* Kapağın üstüne binen yuvarlak sayfa */
+.sheet {
+  background: var(--page);
+  border-radius: 28px 28px 0 0;
+  margin-top: -32px;
+  padding: 28px 16px 48px;
+}
+
+/* Bölüm başlığı: mercan, büyük harf, yanında kıl çizgi */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0 12px;
+  color: var(--primary-text);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--hairline);
+}
+
+.sheet-inner > .section-title:first-child { margin-top: 0; }
+
+/* Gruplu kart */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+}
+
+.card + .card { margin-top: 12px; }
+
+.card > :first-child { margin-top: 0; }
+.card > :last-child { margin-bottom: 0; }
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.card h3 {
+  margin: 18px 0 6px;
+  font-size: 17px;
+}
+
+.card p, .card ul, .card ol { margin: 0 0 12px; }
+.card ul, .card ol { padding-left: 22px; }
+.card li + li { margin-top: 4px; }
+
+.muted { color: var(--text-secondary); }
+
+.meta {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+
+/* İletişim kartı: plakalı satır (GroupedRow + tintRowPlate) */
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.plate {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--tint-primary);
+  color: var(--primary);
+}
+
+.plate svg { width: 22px; height: 22px; }
+
+.contact strong { display: block; }
+
+/* Sık sorulanlar */
+details {
+  border-top: 1px solid var(--hairline);
+  padding: 12px 0;
+}
+
+details:first-of-type { border-top: 0; padding-top: 0; }
+details:last-of-type { padding-bottom: 0; }
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 28px;
+}
+
+summary::-webkit-details-marker { display: none; }
+
+summary::after {
+  content: "›";
+  color: var(--text-secondary);
+  transform: rotate(90deg);
+  transition: transform 0.15s ease;
+}
+
+details[open] summary::after { transform: rotate(-90deg); }
+
+details > :not(summary) { margin: 8px 0 0; }
+
+/* Tablo (gizlilik: veri listesi) */
+.table-wrap { overflow-x: auto; margin: 0 -4px 12px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 10px 4px;
+  border-top: 1px solid var(--hairline);
+}
+
+thead th {
+  border-top: 0;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Katılma sayfasının kodu */
+.join-code {
+  display: block;
+  margin: 4px 0 0;
+  font: 700 34px/1.2 ui-monospace, "SF Mono", Menlo, monospace;
+  letter-spacing: 0.15em;
+  color: var(--primary-text);
+}
+
+.footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.footer a { color: inherit; }
+
+@media (min-width: 720px) {
+  .cover { padding: 28px 24px 72px; }
+  .cover h1 { font-size: 40px; }
+  .sheet { padding: 36px 24px 56px; }
+  .footer { padding: 0 24px 48px; }
+}

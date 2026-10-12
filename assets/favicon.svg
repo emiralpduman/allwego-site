@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Sekme simgesi: uygulama ikonunun mercan zemini + bavul maskotu (mascot.svg'den). -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0724A"/>
+      <stop offset="1" stop-color="#D9552C"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="230" fill="url(#g)"/>
+  <g transform="rotate(-7 512 532.5)">
+    <path d="M432 302 A80 80 0 0 1 592 302" fill="none" stroke="#FFFFFF" stroke-width="44.8"/>
+    <rect x="204.8" y="295.7" width="614.4" height="473.6" rx="140.8" fill="#FFFFFF"/>
+    <circle cx="384" cy="474.9" r="70.4" fill="#16141F"/>
+    <circle cx="640" cy="474.9" r="70.4" fill="#16141F"/>
+    <path d="M403.2 590.1 A108.8 96 0 0 0 620.8 590.1 Z" fill="#16141F"/>
+  </g>
+</svg>
